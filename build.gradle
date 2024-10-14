@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.15'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(8)
+	}
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven { url "https://maven.aliyun.com/repository/public" }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+	implementation 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+	implementation 'com.aliyun:aliyun-java-sdk-core:4.2.1'
+	implementation('com.alibaba.nls:nls-sdk-transcriber:2.2.9') {
+		exclude group: 'io.netty', module: 'netty-all'
+	}
+
+	implementation 'org.java-websocket:Java-WebSocket:1.5.2'
+
+	implementation 'com.aliyun.oss:aliyun-sdk-oss:3.17.0'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
